@@ -36,28 +36,5 @@ module.exports = async (req, res) => {
                 res.status(500);
             });
         
-        
-        
-        
-    }).catch(err => {
-        console.log(err);
-        //If we get an error when sending the SMS email the error message back to the sender
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-        // Create Email
-        const email = {
-            to: fromAddress.address,
-            from: toAddress.address,
-            subject: `Error Sending SMS to ${toAddress.local}`,
-            text: `${err}\n For email from ${fromAddress.address}`,
-        };
-        //Send Email
-        sgResp = sgMail.send(email)
-            .then(response => {
-                res.status(200).send("Sent Error Email");
-            })
-            .catch(error => {
-                res.status(500);
-            });
-    });
+    
 };
