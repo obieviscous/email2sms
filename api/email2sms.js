@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
     const from = req.body.from;
     const to = req.body.to;
     const subject = req.body.subject;
+    
   const body = req.body.text;
     //const body = 'can i make changes';
     //Using email-addresses library to extract email details.
