@@ -6,12 +6,12 @@ const twilio = require('twilio');
 
 module.exports = async (req, res) => { 
     const client = twilio(process.env.TWILIO_ACCOUNT_SID,process.env.TWILIO_AUTH_TOKEN);
-    await util.promisify(multer().any())(req, res);
+   await util.promisify(multer().any())(req, res);
 
     const from = req.body.from;
     const to = req.body.to;
     const subject = req.body.subject;
-   const body = req.body.text;
+  const body = req.body.text;
     //const body = 'can i make changes';
     //Using email-addresses library to extract email details.
     const toAddress = addrs.parseOneAddress(to);
@@ -19,13 +19,13 @@ module.exports = async (req, res) => {
     const fromAddress = addrs.parseOneAddress(from);
     const fromName = fromAddress.local;
 
-
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         // Create Email
         const email = {
-            to: fromAddress.address,
-            from: toAddress.address,
-            subject: `hello ${toAddress.local}`,
-            text: `${err}\n For email from ${fromAddress.address}`,
+            to: 'mroliverkelly@gmail.com',
+            from: 'bot@digitalreceptionist.co.uk',
+            subject: 'hello',
+            text: 'hello body',
         };
         //Send Email
         sgResp = sgMail.send(email)
