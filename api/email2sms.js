@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
             to: fromAddress.address,
             from: 'bot@digitalreceptionist.co.uk',
             subject: 'hello',
-            text: 'hello body',
+            text: `Hello ${fromAddress.address}  I'm the Moneypenny Bot`,
         };
         //Send Email
         sgResp = sgMail.send(email)
