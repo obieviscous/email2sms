@@ -37,18 +37,8 @@ module.exports = async (req, res) => {
         let apResponse = JSON.parse(response.body);
      
      
-    }).catch(error => {
-                res.status(500);
-            });
-    
-    
-    
-    
-    
-    
-    
-    
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+        
+          sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         // Create Email
         const email = {
             to: fromAddress.address,
@@ -64,6 +54,22 @@ module.exports = async (req, res) => {
             .catch(error => {
                 res.status(500);
             });
+        
+        
+        
+        
+    }).catch(error => {
+                res.status(500);
+            });
+    
+    
+    
+    
+    
+    
+    
+    
+
         
     
 };
