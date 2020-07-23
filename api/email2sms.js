@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
             'authorization' :  'Basic ' + new Buffer(process.env.TWILIO_ACCOUNT_SID+ ':' + process.env.TWILIO_AUTH_TOKEN).toString('base64')
         },
         body: requestPayload
-    }).then(function(response) {
+    }).then(response => {
         let apResponse = JSON.parse(response.body);
       
      
