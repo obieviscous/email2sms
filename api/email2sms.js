@@ -36,14 +36,13 @@ module.exports = async (req, res) => {
     }).then(response => {
         let apResponse = JSON.parse(response.body);
      
-     
         
           sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         // Create Email
         const email = {
             to: fromAddress.address,
             from: 'bot@digitalreceptionist.co.uk',
-            subject: 'hello',
+            subject: apResponse.dialogue.current_task,
             text: response.body,
         };
         //Send Email
