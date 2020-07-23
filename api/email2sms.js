@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
         body: requestPayload
     }).then(response => {
         let apResponse = JSON.parse(response.body);
-      
+      let mtext =  'm the Moneypenny Bot -'+apResponse
      
     }).catch(error => {
                 res.status(500);
@@ -54,7 +54,7 @@ module.exports = async (req, res) => {
             to: fromAddress.address,
             from: 'bot@digitalreceptionist.co.uk',
             subject: 'hello',
-            text: `Hello ${fromAddress.address}  I'm the Moneypenny Bot`,
+            text: 'Hello ${fromAddress.address}  Im the Moneypenny Bot - ${apResponse} '
         };
         //Send Email
         sgResp = sgMail.send(email)
