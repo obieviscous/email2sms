@@ -3,6 +3,7 @@ const multer = require('multer');
 const addrs = require("email-addresses");
 const sgMail = require('@sendgrid/mail');
 const twilio = require('twilio');
+const got = require('got');
 
 module.exports = async (req, res) => { 
     const client = twilio(process.env.TWILIO_ACCOUNT_SID,process.env.TWILIO_AUTH_TOKEN);
@@ -19,6 +20,34 @@ module.exports = async (req, res) => {
     const fromAddress = addrs.parseOneAddress(from);
     const fromName = fromAddress.local;
 
+    
+    
+    
+    let requestPayload = 'UserId=user123&Language=en-US&Text='+body;
+
+    got.post('https://channels.autopilot.twilio.com/v2/'+process.env.TWILIO_ACCOUNT_SID+'/UA1886d822487d43445e62a9591836abc9/custom/chat', 
+    { 
+        headers: { 
+            'content-type': 'application/x-www-form-urlencoded',
+            'accept': 'application/json',
+            'authorization' :  'Basic ' + new Buffer(process.env.TWILIO_ACCOUNT_SID+ ':' + process.env.TWILIO_AUTH_TOKEN).toString('base64')
+        },
+        body: requestPayload
+    }).then(function(response) {
+        let apResponse = JSON.parse(response.body);
+      
+     
+    }).catch(error => {
+                res.status(500);
+            });
+    
+    
+    
+    
+    
+    
+    
+    
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         // Create Email
         const email = {
