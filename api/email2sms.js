@@ -39,6 +39,8 @@ module.exports = async (req, res) => {
      
         
         
+        if apResponse.dialogue.current_task == "Out_of_the_office" {
+        
         client.taskrouter.workspaces('WS0810af30532d3b6439950e1c4f4a38bc')
                  .tasks
                  .create({attributes: JSON.stringify({
@@ -47,7 +49,28 @@ module.exports = async (req, res) => {
                  .then(task => res.status(200).send(task.sid));
         
         
-
+        } else
+            
+        {
+           
+               sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+        // Create Email
+        const email = {
+            to: fromAddress.address,
+            from: 'bot@digitalreceptionist.co.uk',
+            subject: apResponse.dialogue.current_task,
+            text: apResponse.response.says[0].speech,
+        };
+        //Send Email
+        sgResp = sgMail.send(email)
+            .then(response => {
+                res.status(200).send("Sent Error Email");
+            })
+            .catch(error => {
+                res.status(500);
+            });
+            
+        }
         
         
      
