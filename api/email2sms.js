@@ -39,29 +39,22 @@ module.exports = async (req, res) => {
      
         
         
-         //Sending SMS with Twilio Client
-    client.messages.create({
-        to: `+447411237110`,
-        from: `+447476557430`,
-        body: `hello`
-    }).then(msg => {
-      
-      
-        res.status(200).send(msg.sid);
-    }).catch(err => {
-        //If we get an error when sending the SMS email the error message back to the sender
-        res.status(500);
+        client.taskrouter.workspaces('WS0810af30532d3b6439950e1c4f4a38bc')
+                 .tasks
+                 .create({attributes: JSON.stringify({
+                    type: 'support'
+                  }), workflowSid: 'WW077547db50ec94753c76a96388c933ab'})
+                 .then(task => res.status(200).send(task.sid));
+        
+        
 
-      
-    });
         
         
      
         
-        
      
-        
-   
+     
+     
         
         
         
