@@ -39,20 +39,7 @@ module.exports = async (req, res) => {
      
         
         
-      if (apResponse.dialogue.current_task == "xxxx") {  
-        
-           client.messages.create({
-        to: `+0019104151007`,
-        from: process.env.TWILIO_PHONE_NUMBER,
-        body: body
-    }).then(msg => {
-    
-        res.status(200).send(msg.sid);
-    }).catch(err => {
-         res.status(500);
-        };
-        
-             }
+
 
         
         
