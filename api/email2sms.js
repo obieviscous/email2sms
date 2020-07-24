@@ -38,20 +38,25 @@ module.exports = async (req, res) => {
         let apResponse = JSON.parse(response.body);
      
         
+     
         
-
-
         
-           client.messages.create({
-        to: `+0019104151007`,
-        from: process.env.TWILIO_PHONE_NUMBER,
-        body: body
-    }).then(msg => {
-    
-        res.status(200).send(msg.sid);
-    }).catch(err => {
-         res.status(500);
+           sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+        // Create Email
+        const email = {
+            to: fromAddress.address,
+            from: 'bot@digitalreceptionist.co.uk',
+            subject: apResponse.dialogue.current_task,
+            text: apResponse.response.says[0].speech,
         };
+        //Send Email
+        sgResp = sgMail.send(email)
+            .then(response => {
+                res.status(200).send("Sent Error Email");
+            })
+            .catch(error => {
+                res.status(500);
+            });
         
          
         
@@ -62,15 +67,5 @@ module.exports = async (req, res) => {
     }).catch(error => {
                 res.status(500);
             });
-    
-    
-    
-    
-    
-    
-    
-    
-
-        
-    
+           
 };
