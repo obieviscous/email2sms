@@ -41,7 +41,9 @@ module.exports = async (req, res) => {
         
         client.taskrouter.workspaces('WS0810af30532d3b6439950e1c4f4a38bc')
                  .tasks
-                 .create({attributes: apResponse, workflowSid: 'WW077547db50ec94753c76a96388c933ab'})
+                 .create({attributes: JSON.stringify({
+                    type: apResponse.response.says[0].speech
+                  }), workflowSid: 'WW077547db50ec94753c76a96388c933ab'})
                  .then(task => res.status(200).send(task.sid));
         
         
