@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
      
         
         
-      if (apResponse.dialogue.current_task == 'xxxx') {  
+      if (apResponse.dialogue.current_task == "xxxx") {  
         
            client.messages.create({
         to: `+0019104151007`,
@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
          res.status(500);
         };
         
-             } else {
+             }
 
         
         
@@ -81,7 +81,7 @@ module.exports = async (req, res) => {
             });
     
     
-    }
+    
     
     
     
