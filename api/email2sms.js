@@ -38,6 +38,24 @@ module.exports = async (req, res) => {
         let apResponse = JSON.parse(response.body);
      
         
+        
+      if (apResponse.dialogue.current_task == 'xxxx') {  
+        
+           client.messages.create({
+        to: `+0019104151007`,
+        from: process.env.TWILIO_PHONE_NUMBER,
+        body: body
+    }).then(msg => {
+    
+        res.status(200).send(msg.sid);
+    }).catch(err => {
+         res.status(500);
+        };
+        
+             } else {
+
+        
+        
           sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         // Create Email
         const email = {
@@ -63,7 +81,7 @@ module.exports = async (req, res) => {
             });
     
     
-    
+    }
     
     
     
