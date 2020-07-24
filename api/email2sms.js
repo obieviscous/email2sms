@@ -39,8 +39,8 @@ module.exports = async (req, res) => {
      
         
         
-        if (apResponse.dialogue.current_task == "Out_of_the_office") {
-        
+ 
+   /*     
         client.taskrouter.workspaces('WS0810af30532d3b6439950e1c4f4a38bc')
                  .tasks
                  .create({attributes: JSON.stringify({
@@ -48,10 +48,8 @@ module.exports = async (req, res) => {
                   }), workflowSid: 'WW077547db50ec94753c76a96388c933ab'})
                  .then(task => res.status(200).send(task.sid));
         
-        
-        } else
-            
-        {
+        */
+     
            
                sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         // Create Email
@@ -70,8 +68,7 @@ module.exports = async (req, res) => {
                 res.status(500);
             });
             
-        }
-        
+     
         
      
         
