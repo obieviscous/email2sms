@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
      
         
         
-        if apResponse.dialogue.current_task == "Out_of_the_office" {
+        if (apResponse.dialogue.current_task == "Out_of_the_office") {
         
         client.taskrouter.workspaces('WS0810af30532d3b6439950e1c4f4a38bc')
                  .tasks
